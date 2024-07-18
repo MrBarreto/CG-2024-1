@@ -1,12 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def normalizar(vetor):
-    return vetor / np.linalg.norm(vetor)
-#calcular a reflexão em relação a normal
-def refletido(vetor, eixo):
-    return vetor - 2 * np.dot(vetor, eixo) * eixo
-
 # Verifica se houve interseção da esfera com o raio de luz
 def intersecao_esfera(centro, raio, origem_raio, direcao_raio):
     b = 2 * np.dot(direcao_raio, origem_raio - centro)
@@ -44,6 +38,12 @@ def encontrar_objeto_mais_proximo(objetos, origem_raio, direcao_raio):
             distancia_minima = distancia
             objeto_mais_proximo = objetos[indice]
     return objeto_mais_proximo, distancia_minima
+
+def normalizar(vetor):
+    return vetor / np.linalg.norm(vetor)
+#calcular a reflexão em relação a normal
+def refletido(vetor, eixo):
+    return vetor - 2 * np.dot(vetor, eixo) * eixo
 
 def ray_tracing(origem_raio, direcao_raio, objetos, luz, camera, profundidade=0, profundidade_maxima=3):
     #Verifica se houve um estouro do número máximo de reflexsões se sim retorna preto
